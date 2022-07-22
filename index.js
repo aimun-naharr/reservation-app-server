@@ -5,10 +5,11 @@ import authRoute from './Routes/auth.js'
 import hotelsRoute from './Routes/hotels.js'
 import roomsRoute from './Routes/room.js'
 import usersRoute from './Routes/users.js'
+import cors from 'cors'
 
 dotenv.config()
 const app=express()
-
+app.use(cors())
 const connect =async()=>{
     try {
         await mongoose.connect(process.env.MONGO);
@@ -18,6 +19,8 @@ const connect =async()=>{
       }
     
 }
+
+app.use(express.json())
 
 // middlewares
 app.use('/auth', authRoute)
